@@ -29,18 +29,14 @@ class SimplePerceptron:
         
     # 逐次学習
     def train(self, list_x, y):
-        ### list_x.append(self.bias)               # リストxにハイアス項を追加する
         o = self.feedforward(list_x)
         for i in range(self.input_n + 1):
             self.list_w[i] = self.list_w[i] + (y - o) * list_x[i] * self.eta
-            
-        ### self.print_w()
             
     
     # 出力
     # 0または1の数字を1つ返す
     def feedforward(self, list_x):
-        ### list_x.append(self.bias)               # リストxにハイアス項を追加する
         return self.step(self.dot(list_x))
 
     # not出力
@@ -126,15 +122,11 @@ if __name__ == "__main__":
     for x in list_x:
         print("X1 = {0:d}, X2 = {1:d} => ".format(x[0], x[1]), end='')
         orAns = orCircuit.feedforward([x[0], x[1]])
-        ### print("orAns = {0:d}".format(orAns))
         
         nandAns = andCircuit.notfeedforward([x[0], x[1]])
-        ### print("nandAns = {0:d}".format(nandAns))
         
         andAns = andCircuit.feedforward([x[0], x[1]])
-        ### print("andAns = {0:d}".format(andAns))
         
         xorAns = andCircuit.feedforward([orAns, nandAns])
-        ### print("xorAns = {0:d}".format(xorAns))
         print( "OR : {0:d}, NAND : {1:d}, XOR : {2:d}".format(orAns, nandAns, xorAns) )
  
